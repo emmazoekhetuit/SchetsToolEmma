@@ -8,19 +8,19 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\julia\\.nuget\\packages\\": {}
+    "C:\\Users\\emmad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\julia\\OneDrive\\Bureaublad\\UniUtrecht\\Leerjaar 1 2022-2023\\P1 Imperatief 2\\Nieuwe projecten\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+      "projectUniqueName": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
       "projectName": "Emma'sSchetseditor",
-      "projectPath": "C:\\Users\\julia\\OneDrive\\Bureaublad\\UniUtrecht\\Leerjaar 1 2022-2023\\P1 Imperatief 2\\Nieuwe projecten\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
-      "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\julia\\OneDrive\\Bureaublad\\UniUtrecht\\Leerjaar 1 2022-2023\\P1 Imperatief 2\\Nieuwe projecten\\Emma's Schetsproject\\obj\\",
+      "projectPath": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+      "packagesPath": "C:\\Users\\emmad\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\emmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
