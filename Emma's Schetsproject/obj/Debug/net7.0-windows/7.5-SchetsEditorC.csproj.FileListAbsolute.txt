@@ -1,0 +1,14 @@
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\bin\Debug\net7.0-windows\7.5-SchetsEditorC.exe
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\bin\Debug\net7.0-windows\7.5-SchetsEditorC.deps.json
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\bin\Debug\net7.0-windows\7.5-SchetsEditorC.runtimeconfig.json
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\bin\Debug\net7.0-windows\7.5-SchetsEditorC.dll
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\bin\Debug\net7.0-windows\7.5-SchetsEditorC.pdb
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.AssemblyInfoInputs.cache
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.AssemblyInfo.cs
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.csproj.CoreCompileInputs.cache
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.dll
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\refint\7.5-SchetsEditorC.dll
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.pdb
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\7.5-SchetsEditorC.genruntimeconfig.cache
+C:\Users\julia\OneDrive\Bureaublad\UniUtrecht\Leerjaar 1 2022-2023\P1 Imperatief 2\Nieuwe projecten\Emma's Schetsproject\obj\Debug\net7.0-windows\ref\7.5-SchetsEditorC.dll
