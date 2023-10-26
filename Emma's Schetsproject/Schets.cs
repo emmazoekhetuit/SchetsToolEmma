@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 public class Schets
 {
     private Bitmap bitmap;
+    private List<ISchetsTool> schetsTools = new List<ISchetsTool>();
         
     public Schets()
     {
@@ -16,6 +17,12 @@ public class Schets
     {
         get { return Graphics.FromImage(bitmap); }
     }
+
+    public List<ISchetsTool> SchetsTools
+    {
+        get { return schetsTools; }
+    }
+
     public void VeranderAfmeting(Size sz)
     {
         if (sz.Width > bitmap.Size.Width || sz.Height > bitmap.Size.Height)
@@ -27,6 +34,14 @@ public class Schets
             gr.FillRectangle(Brushes.White, 0, 0, sz.Width, sz.Height);
             gr.DrawImage(bitmap, 0, 0);
             bitmap = nieuw;
+        }
+    }
+
+    public void Teken2()
+    {
+        for(int i = 0; i < schetsTools.Count; i++)
+        {
+           // schetsTools[i].Compleet();
         }
     }
     public void Teken(Graphics gr)

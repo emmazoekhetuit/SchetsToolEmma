@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 public class SchetsControl : UserControl
 {   
@@ -35,6 +36,16 @@ public class SchetsControl : UserControl
     {   Graphics g = schets.BitmapGraphics;
         g.SmoothingMode = SmoothingMode.AntiAlias;
         return g;
+    }
+
+    public List<ISchetsTool> MaakSchetsTools()
+    {
+        List<ISchetsTool> s = schets.SchetsTools;
+        return s;
+    }
+    public void Teken()
+    {
+        schets.Teken2();
     }
     public void Schoon(object o, EventArgs ea)
     {   schets.Schoon();

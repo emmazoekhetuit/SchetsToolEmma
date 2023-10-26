@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Collections.Generic;
 
 
 public interface ISchetsTool
@@ -52,6 +53,7 @@ public class TekstTool : StartpuntTool
 
 public abstract class TweepuntTool : StartpuntTool
 {
+    protected Point eindpunt;
     public static Rectangle Punten2Rechthoek(Point p1, Point p2)
     {   return new Rectangle( new Point(Math.Min(p1.X,p2.X), Math.Min(p1.Y,p2.Y))
                             , new Size (Math.Abs(p1.X-p2.X), Math.Abs(p1.Y-p2.Y))
@@ -76,8 +78,11 @@ public abstract class TweepuntTool : StartpuntTool
         this.Bezig(s.CreateGraphics(), this.startpunt, p);
     }
     public override void MuisLos(SchetsControl s, Point p)
-    {   base.MuisLos(s, p);
-        this.Compleet(s.MaakBitmapGraphics(), this.startpunt, p);
+    {   base.MuisLos(s, p); //kwast maken
+        //this.Compleet(s.MaakBitmapGraphics(), this.startpunt, p); //bezig en dat is tekenen op de graphics (maakbitmapgraphics maakt een graphics)
+        this.eindpunt = p;
+        this.Compleet2(s.MaakSchetsTools());
+        s.Teken();
         s.Invalidate();
     }
     public override void Letter(SchetsControl s, char c)
@@ -87,6 +92,12 @@ public abstract class TweepuntTool : StartpuntTool
         
     public virtual void Compleet(Graphics g, Point p1, Point p2)
     {   this.Bezig(g, p1, p2);
+
+    }
+
+    public virtual void Compleet2(List<ISchetsTool> s)
+    {
+        s.Add(this);
     }
 }
 
@@ -120,7 +131,7 @@ public class LijnTool : TweepuntTool
 public class PenTool : LijnTool
 {
     public override string ToString() { return "pen"; }
-
+    List<>
     public override void MuisDrag(SchetsControl s, Point p)
     {   this.MuisLos(s, p);
         this.MuisVast(s, p);

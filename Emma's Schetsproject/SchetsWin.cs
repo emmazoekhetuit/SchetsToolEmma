@@ -45,7 +45,7 @@ public class SchetsWin : Form
                                 , new VolCirkelTool()
                                 };
 
-        String[] deKleuren = {  "Black", "White", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Gray", "Purple","HotPink", "Indigo", "DarkRed" , "Tomato"};
+        String[] deKleuren = {  "Black", "White", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Gray", "Purple", "HotPink", "Indigo", "DarkRed" , "Tomato"};
 
         this.ClientSize = new Size(700, 500);
         huidigeTool = deTools[0];
