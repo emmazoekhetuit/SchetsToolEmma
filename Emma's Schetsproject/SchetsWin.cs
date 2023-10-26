@@ -45,7 +45,7 @@ public class SchetsWin : Form
                                 , new VolCirkelTool()
                                 };
 
-        String[] deKleuren = { "Black", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan" };
+        String[] deKleuren = {  "Black", "White", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Gray", "Purple","HotPink", "Indigo", "DarkRed" , "Tomato"};
 
         this.ClientSize = new Size(700, 500);
         huidigeTool = deTools[0];
@@ -109,6 +109,7 @@ public class SchetsWin : Form
         ToolStripMenuItem menu = new ToolStripMenuItem("Actie");
         menu.DropDownItems.Add("Clear", null, schetscontrol.Schoon );
         menu.DropDownItems.Add("Roteer", null, schetscontrol.Roteer );
+        menu.DropDownItems.Add("Save", null, schetscontrol.Save);
         ToolStripMenuItem submenu = new ToolStripMenuItem("Kies kleur");
         foreach (string k in kleuren)
             submenu.DropDownItems.Add(k, null, schetscontrol.VeranderKleurViaMenu);
@@ -150,8 +151,13 @@ public class SchetsWin : Form
         Button rotate = new Button(); paneel.Controls.Add(rotate);
         rotate.Text = "Rotate"; 
         rotate.Location = new Point( 80, 0); 
-        rotate.Click += schetscontrol.Roteer; 
-           
+        rotate.Click += schetscontrol.Roteer;
+
+        Button save = new Button(); paneel.Controls.Add(save);
+        save.Text = "Save";
+        save.Location = new Point(160, 0);
+        save.Click += schetscontrol.Save;
+
         Label penkleur = new Label(); paneel.Controls.Add(penkleur);
         penkleur.Text = "Penkleur:"; 
         penkleur.Location = new Point(180, 3); 

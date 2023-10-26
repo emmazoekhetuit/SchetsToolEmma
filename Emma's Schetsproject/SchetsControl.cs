@@ -53,4 +53,9 @@ public class SchetsControl : UserControl
     {   string kleurNaam = ((ToolStripMenuItem)obj).Text;
         penkleur = Color.FromName(kleurNaam);
     }
+
+    public void Save(Object o, EventArgs ea)
+    {
+        schets.Save();
+    }
 }

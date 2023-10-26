@@ -41,6 +41,10 @@ public class Schets
     public void Roteer()
     {
         bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+    }
+
+    public void Save()
+    {
         bitmap.Save("file.png", ImageFormat.Png);
     }
 }
