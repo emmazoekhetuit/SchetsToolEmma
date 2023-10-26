@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
 public class Schets
@@ -39,9 +40,12 @@ public class Schets
 
     public void Teken2()
     {
-        for(int i = 0; i < schetsTools.Count; i++)
+        Graphics g = Graphics.FromImage(bitmap);
+        //g.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        for (int i = 0; i < schetsTools.Count; i++)
         {
-           // schetsTools[i].Compleet();
+           schetsTools[i].TekenSelf(g);
         }
     }
     public void Teken(Graphics gr)
@@ -50,9 +54,14 @@ public class Schets
     }
     public void Schoon()
     {
+        List<ISchetsTool> st = SchetsTools;
+        st.Clear();
+
         Graphics gr = Graphics.FromImage(bitmap);
         gr.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
     }
+
+    //Rotate moet veranderd worden
     public void Roteer()
     {
         bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
