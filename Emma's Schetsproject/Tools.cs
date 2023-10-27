@@ -10,7 +10,10 @@ public interface ISchetsTool
     void MuisDrag(SchetsControl s, Point p);
     void MuisLos(SchetsControl s, Point p);
     void Letter(SchetsControl s, char c);
+
+    //nieuw
     void TekenSelf(Graphics g);
+    bool Collides(Point p);
 }
 
 public abstract class StartpuntTool : ISchetsTool
@@ -27,6 +30,7 @@ public abstract class StartpuntTool : ISchetsTool
     public abstract void MuisDrag(SchetsControl s, Point p);
     public abstract void Letter(SchetsControl s, char c);
     public abstract void TekenSelf(Graphics g);
+    public abstract bool Collides(Point p);
 }
 
 public class TekstTool : StartpuntTool
@@ -53,8 +57,9 @@ public class TekstTool : StartpuntTool
     }
     public override void TekenSelf(Graphics g)
     {
-
+        //ToDo
     }
+    public override bool Collides(Point p) { return false; }
 }
 
 public abstract class TweepuntTool : StartpuntTool
@@ -64,10 +69,7 @@ public abstract class TweepuntTool : StartpuntTool
     {   return new Rectangle( new Point(Math.Min(p1.X,p2.X), Math.Min(p1.Y,p2.Y))
                             , new Size (Math.Abs(p1.X-p2.X), Math.Abs(p1.Y-p2.Y))
                             );
-    }
-
-    //public static Cirkel Punten2Circle
-    
+    }    
 
     public static Pen MaakPen(Brush b, int dikte)
     {   Pen pen = new Pen(b, dikte);
@@ -87,7 +89,7 @@ public abstract class TweepuntTool : StartpuntTool
     {   base.MuisLos(s, p); //kwast maken
         //this.Compleet(s.MaakBitmapGraphics(), this.startpunt, p); //bezig en dat is tekenen op de graphics (maakbitmapgraphics maakt een graphics)
         this.eindpunt = p;
-        this.Compleet2(s.MaakSchetsTools());
+        this.Compleet2(s.MaakSchetsTools()); //pakt de lijst die wij hebben gemaakt en geeft die mee aan compleet2
         s.Teken();
         s.Invalidate();
     }
@@ -103,9 +105,8 @@ public abstract class TweepuntTool : StartpuntTool
 
     public virtual void Compleet2(List<ISchetsTool> s)
     {
-        s.Add(this);
+        s.Add((ISchetsTool)this.MemberwiseClone()); 
     }
-
 }
 
 public class RechthoekTool : TweepuntTool
@@ -120,6 +121,7 @@ public class RechthoekTool : TweepuntTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
+    public override bool Collides(Point p) { return false; }
 }
     
 public class VolRechthoekTool : RechthoekTool
@@ -143,25 +145,33 @@ public class LijnTool : TweepuntTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
+    public override bool Collides(Point p) { return false; }
 }
 
 public class PenTool : LijnTool
 {
     public override string ToString() { return "pen"; }
-   // List<>
+    List<LijnTool> lijnen = new List<LijnTool>(); 
+
     public override void MuisDrag(SchetsControl s, Point p)
     {   this.MuisLos(s, p);
         this.MuisVast(s, p);
+       // lijnen.Add(    );
     }
 
     public override void TekenSelf(Graphics g)
     {
-       this.Compleet(g, this.startpunt, this.eindpunt);
+        foreach(LijnTool t in lijnen)
+        {
+            t.TekenSelf(g);
+                            //this.Compleet(g, this.startpunt, this.eindpunt);
+        }
     }
 }
     
 public class GumTool : PenTool
 {
+
     public override string ToString() { return "gum"; }
 
     public override void Bezig(Graphics g, Point p1, Point p2)
@@ -172,6 +182,26 @@ public class GumTool : PenTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
+}
+
+public class GumTool2 : ISchetsTool
+{
+    public void MuisVast(SchetsControl s, Point p) { }
+    public void MuisDrag(SchetsControl s, Point p) { }
+    
+    
+    public void MuisLos(SchetsControl s, Point p) 
+    {
+        s.RemoveVorm(p);
+    }
+    
+    public void Letter(SchetsControl s, char c) { }
+
+
+    //nieuw
+    public void TekenSelf(Graphics g) { }
+    public override string ToString() { return "vormgum"; }
+    public bool Collides(Point p) { return false; }
 }
 
 public class CirkelTool : TweepuntTool
@@ -187,16 +217,14 @@ public class CirkelTool : TweepuntTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
+
+    public override bool Collides(Point p) { return false; }
 }
 
-public class VolCirkelTool : TweepuntTool
+public class VolCirkelTool : CirkelTool
 {
     public override string ToString() { return "bol"; }
 
-    public override void Bezig(Graphics g, Point p1, Point p2)
-    { //Je kan een cirkel tekenen met een rectangle dus doen we dat ook lekker
-        g.DrawEllipse(MaakPen(kwast, 3), TweepuntTool.Punten2Rechthoek(p1, p2));
-    }
     public override void Compleet(Graphics g, Point p1, Point p2)
     { //Je kan een cirkel tekenen met een rectangle dus doen we dat ook lekker
         g.FillEllipse(kwast, TweepuntTool.Punten2Rechthoek(p1, p2));

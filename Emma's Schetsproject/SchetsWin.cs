@@ -35,14 +35,15 @@ public class SchetsWin : Form
 
     public SchetsWin()
     {
-        ISchetsTool[] deTools = { new PenTool()         
+        ISchetsTool[] deTools = { new TekstTool()
+                                , new PenTool()
                                 , new LijnTool()
                                 , new RechthoekTool()
                                 , new VolRechthoekTool()
-                                , new TekstTool()
-                                , new GumTool()
                                 , new CirkelTool()
                                 , new VolCirkelTool()
+                                , new GumTool()
+                                , new GumTool2()
                                 };
 
         String[] deKleuren = {  "Black", "White", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Gray", "Purple", "HotPink", "Indigo", "DarkRed" , "Tomato"};

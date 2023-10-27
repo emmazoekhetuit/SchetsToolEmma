@@ -5,7 +5,7 @@ opdracht 1
 problemen
 pentool slaat een lijn op per plek
 
-tekent niet
+
 
 gum 
 

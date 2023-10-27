@@ -38,10 +38,22 @@ public class Schets
         }
     }
 
+    public void RemoveVorm(Point p)
+    {
+        for (int i = schetsTools.Count - 1; i >= 0 ; i--)
+        {
+            if (schetsTools[i].Collides(p))
+            {
+                schetsTools.RemoveAt(i);
+                break;
+            }
+        }
+    }
+
     public void Teken2()
     {
         Graphics g = Graphics.FromImage(bitmap);
-        //g.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
+        g.Clear(Color.White);//FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
         g.SmoothingMode = SmoothingMode.AntiAlias;
         for (int i = 0; i < schetsTools.Count; i++)
         {
@@ -70,5 +82,6 @@ public class Schets
     public void Save()
     {
         bitmap.Save("file.png", ImageFormat.Png);
+        
     }
 }
