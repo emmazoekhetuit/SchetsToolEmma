@@ -56,6 +56,7 @@ public class SchetsControl : UserControl
 
     public void Save(Object o, EventArgs ea)
     {
-        schets.Save();
+        schets.Sa
+            ve();
     }
 }
