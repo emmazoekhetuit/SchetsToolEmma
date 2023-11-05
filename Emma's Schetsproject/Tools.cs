@@ -118,7 +118,7 @@ public abstract class TweepuntTool : StartpuntTool
 
     public virtual void Compleet2(List<ISchetsTool> s)
     {
-        s.Add((ISchetsTool)this.MemberwiseClone()); 
+        s.Add((ISchetsTool)MemberwiseClone()); 
     }
 }
 
@@ -179,6 +179,16 @@ public class VolRechthoekTool : RechthoekTool
 
 public class LijnTool : TweepuntTool
 {
+    public LijnTool() { }
+
+    public LijnTool(Point start, Point eind, Brush b, int dik) 
+    { 
+        startpunt = start;
+        eindpunt = eind;
+        kwast = b;
+        dikte = dik;
+    }
+
     public override string ToString() { return "lijn"; }
 
     public override void Bezig(Graphics g, Point p1, Point p2)
@@ -206,13 +216,29 @@ public class LijnTool : TweepuntTool
 public class PenTool : LijnTool
 {
     public override string ToString() { return "pen"; }
-    List<LijnTool> lijnen = new List<LijnTool>(); 
+    List<LijnTool> lijnen;
+
+    public override void Compleet2(List<ISchetsTool> s)
+    {
+        lijnen.Add(new LijnTool(this.startpunt, this.eindpunt, kwast, dikte));
+    }
+
+    public override void MuisVast(SchetsControl s, Point p)
+    {
+        lijnen = new List<LijnTool>();
+        base.MuisVast(s, p);
+        base.Compleet2(s.MaakSchetsTools());
+
+    }
 
     public override void MuisDrag(SchetsControl s, Point p)
-    {   this.MuisLos(s, p);
-        this.MuisVast(s, p);
-       // lijnen.Add(    );
+    {
+        this.MuisLos(s, p);
+        startpunt = p;
+        dikte = s.PenDikte;
+
     }
+
 
     public override void TekenSelf(Graphics g)
     {
@@ -222,20 +248,32 @@ public class PenTool : LijnTool
                             //this.Compleet(g, this.startpunt, this.eindpunt);
         }
     }
+
+    public override bool Collides(Point p)
+    {
+        bool collide;
+        foreach(LijnTool l in lijnen)
+        {
+          collide =  l.Collides(p);
+            if (collide) return true;
+        }
+
+        return false;
+    }
 }
     
 public class GumTool : PenTool
 {
-
+    
     public override string ToString() { return "gum"; }
 
-    public override void Bezig(Graphics g, Point p1, Point p2)
-    {   g.DrawLine(MaakPen(Brushes.White, 7), p1, p2);
-    }
-
-    public override void TekenSelf(Graphics g)
+    public override void MuisLos(SchetsControl s, Point p)
     {
-        this.Compleet(g, this.startpunt, this.eindpunt);
+        kwast = new SolidBrush(Color.White);
+        this.eindpunt = p;
+        this.Compleet2(s.MaakSchetsTools()); //pakt de lijst die wij hebben gemaakt en geeft die mee aan compleet2
+        s.Teken();
+        s.Invalidate();
     }
 }
 
