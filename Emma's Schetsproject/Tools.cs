@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections.Generic;
-
+using System.Configuration;
 
 public interface ISchetsTool
 {
@@ -20,9 +20,11 @@ public abstract class StartpuntTool : ISchetsTool
 {
     protected Point startpunt;
     protected Brush kwast;
+    protected int dikte; //om de dikte van de lijn/pen aan te passen
 
     public virtual void MuisVast(SchetsControl s, Point p)
     {   startpunt = p;
+        dikte = s.PenDikte;
     }
     public virtual void MuisLos(SchetsControl s, Point p)
     {   kwast = new SolidBrush(s.PenKleur);
@@ -55,6 +57,17 @@ public class TekstTool : StartpuntTool
             s.Invalidate();
         }
     }
+    /*
+    public override void MuisLos(SchetsControl s, Point p)
+    {
+        base.MuisLos(s, p); //kwast maken
+        //this.Compleet(s.MaakBitmapGraphics(), this.startpunt, p); //bezig en dat is tekenen op de graphics (maakbitmapgraphics maakt een graphics)
+        this.eindpunt = p;
+        this.Compleet2(s.MaakSchetsTools()); //pakt de lijst die wij hebben gemaakt en geeft die mee aan compleet2
+        s.Teken();
+        s.Invalidate();
+    }
+    */
     public override void TekenSelf(Graphics g)
     {
         //ToDo
@@ -121,9 +134,40 @@ public class RechthoekTool : TweepuntTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
-    public override bool Collides(Point p) { return false; }
+    public override bool Collides(Point p)
+    {  
+     if (startpunt.X < eindpunt.X)
+     {
+         if (startpunt.Y < eindpunt.Y)
+         { 
+             if (startpunt.X < p.X && p.X < eindpunt.X & startpunt.Y < p.Y && p.Y < eindpunt.Y)
+             { return true; }
+        
+         }
+         else if (eindpunt.Y < startpunt.Y)
+         {
+             if (startpunt.X < p.X && p.X < eindpunt.X & eindpunt.Y < p.Y && p.Y < startpunt.Y)
+             { return true; }
+         }
+     }
+     else if (startpunt.X > eindpunt.X)
+     {
+         if (startpunt.Y < eindpunt.Y)
+         {
+             if (startpunt.X > p.X && p.X > eindpunt.X & startpunt.Y < p.Y && p.Y < eindpunt.Y)
+             { return true; }
+         }
+         else if (eindpunt.Y < startpunt.Y)
+         {
+             if (startpunt.X > p.X && p.X > eindpunt.X & eindpunt.Y < p.Y && p.Y < startpunt.Y)
+             { return true; }
+         }
+     }
+
+     return false;
+    }
 }
-    
+
 public class VolRechthoekTool : RechthoekTool
 {
     public override string ToString() { return "vlak"; }
@@ -138,14 +182,25 @@ public class LijnTool : TweepuntTool
     public override string ToString() { return "lijn"; }
 
     public override void Bezig(Graphics g, Point p1, Point p2)
-    {   g.DrawLine(MaakPen(this.kwast,3), p1, p2);
+    {   g.DrawLine(MaakPen(this.kwast,dikte), p1, p2);
     }
 
     public override void TekenSelf(Graphics g)
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
-    public override bool Collides(Point p) { return false; }
+    public override bool Collides(Point p) 
+    {
+        int teller = Math.Abs((eindpunt.X - startpunt.X) * (startpunt.Y - p.Y) - (startpunt.X - p.X) * (eindpunt.Y - startpunt.Y));
+        double noemer = Math.Sqrt((eindpunt.X - startpunt.X) * (eindpunt.X - startpunt.X) + (eindpunt.Y - startpunt.Y) * (eindpunt.Y - startpunt.Y));
+        double afstand = teller / noemer;
+        if (afstand < 10)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 }
 
 public class PenTool : LijnTool
@@ -193,10 +248,10 @@ public class GumTool2 : ISchetsTool
     public void MuisLos(SchetsControl s, Point p) 
     {
         s.RemoveVorm(p);
+        s.Invalidate();
     }
     
     public void Letter(SchetsControl s, char c) { }
-
 
     //nieuw
     public void TekenSelf(Graphics g) { }
@@ -217,8 +272,44 @@ public class CirkelTool : TweepuntTool
     {
         this.Compleet(g, this.startpunt, this.eindpunt);
     }
+    public override bool Collides(Point p)
+    {
+       GraphicsPath path = new GraphicsPath();
+       path.AddEllipse(TweepuntTool.Punten2Rechthoek(startpunt, eindpunt));
+       return path.IsVisible(p); 
+        
 
-    public override bool Collides(Point p) { return false; }
+       /* if (startpunt.X < eindpunt.X)
+        {
+            if (startpunt.Y < eindpunt.Y)
+            {
+                if (startpunt.X < p.X && p.X < eindpunt.X & startpunt.Y < p.Y && p.Y < eindpunt.Y)
+                { return true; }
+            }
+            else if (eindpunt.Y < startpunt.Y)
+            {
+                if (startpunt.X < p.X && p.X < eindpunt.X & eindpunt.Y < p.Y && p.Y < startpunt.Y)
+                { return true; }
+            }
+        }
+        else if (startpunt.X > eindpunt.X)
+        {
+            if (startpunt.Y < eindpunt.Y)
+            {
+                if (startpunt.X > p.X && p.X > eindpunt.X & startpunt.Y < p.Y && p.Y < eindpunt.Y)
+                { return true; }
+            }
+            else if (eindpunt.Y < startpunt.Y)
+            {
+                if (startpunt.X > p.X && p.X > eindpunt.X & eindpunt.Y < p.Y && p.Y < startpunt.Y)
+                { return true; }
+            }
+        }
+
+
+        return false;
+       */
+    }
 }
 
 public class VolCirkelTool : CirkelTool

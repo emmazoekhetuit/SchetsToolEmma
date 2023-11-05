@@ -10,6 +10,8 @@ public class SchetsWin : Form
     ISchetsTool huidigeTool;
     Panel paneel;
     bool vast;
+    bool modified = false;
+
 
     private void veranderAfmeting(object o, EventArgs ea)
     {
@@ -53,6 +55,7 @@ public class SchetsWin : Form
 
         schetscontrol = new SchetsControl();
         schetscontrol.Location = new Point(64, 10);
+        this.FormClosing += afsluitmelding;
         schetscontrol.MouseDown += (object o, MouseEventArgs mea) =>
                                     {   vast=true;  
                                         huidigeTool.MuisVast(schetscontrol, mea.Location); 
@@ -64,7 +67,8 @@ public class SchetsWin : Form
         schetscontrol.MouseUp   += (object o, MouseEventArgs mea) =>
                                     {   if (vast)
                                         huidigeTool.MuisLos (schetscontrol, mea.Location);
-                                        vast = false; 
+                                        vast = false;
+                                        modified = true;
                                     };
         schetscontrol.KeyPress +=  (object o, KeyPressEventArgs kpea) => 
                                     {   huidigeTool.Letter  (schetscontrol, kpea.KeyChar); 
@@ -81,6 +85,19 @@ public class SchetsWin : Form
         this.maakActieButtons(deKleuren);
         this.Resize += this.veranderAfmeting;
         this.veranderAfmeting(null, null);
+    }
+
+    private void afsluitmelding(object obj, FormClosingEventArgs e)
+    {
+        if (modified)  // deze houdt bij of er wijzegingen zijn aangebracht 
+        {
+            DialogResult result = MessageBox.Show("Wijzigingen zijn aangebracht. Wilt u de wijzigingen opslaan voordat u afsluit?", "Waarschuwing", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                schetscontrol.Save(obj, e); //test aub
+
+            }
+        }
     }
 
     private void maakFileMenu()
@@ -171,5 +188,17 @@ public class SchetsWin : Form
         foreach (string k in kleuren)
             cbb.Items.Add(k);
         cbb.SelectedIndex = 0;
+
+        // textbox waar je dikte in kan vullen 
+        TextBox dikteinvullen = new TextBox(); paneel.Controls.Add(dikteinvullen);
+        dikteinvullen.Location = new Point(390, 0);
+        //tdikteinvullen = dikteinvullen.Text;
+        dikteinvullen.TextChanged += schetscontrol.VeranderDikte;
+
+        // label met pen/lijn- dikte: 
+        Label dikte = new Label(); paneel.Controls.Add(dikte);
+        dikte.Text = "pen/lijn- dikte:";
+        dikte.Location = new Point(300, 0);
+        dikte.AutoSize = true;
     }
 }

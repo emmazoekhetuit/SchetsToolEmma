@@ -8,10 +8,15 @@ public class SchetsControl : UserControl
 {
     private Schets schets;
     private Color penkleur;
+    private int pendikte = 3;
 
     public Color PenKleur
     {
         get { return penkleur; }
+    }
+    public int PenDikte
+    {
+        get { return pendikte; }
     }
     public Schets Schets
     {
@@ -94,5 +99,25 @@ public class SchetsControl : UserControl
     public void Save(Object o, EventArgs ea)
     {
         schets.Save();
+    }
+
+    public void VeranderDikte(object obj, EventArgs ea)
+    {
+        int a;
+        try
+        {
+            if (((TextBox)obj).Text != "")
+            {
+                a = int.Parse(((TextBox)obj).Text);
+            }
+            else { a = pendikte; }
+        }
+        catch
+        {
+            MessageBox.Show("Dit is niet correct ingevuld. Je kunt alleen een cijfer invullen", "Waarschuwing");
+            ((TextBox)obj).Text = "3";
+            a = 3;
+        }
+        pendikte = a;
     }
 }
