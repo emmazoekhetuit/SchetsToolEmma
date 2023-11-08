@@ -11,6 +11,11 @@ public class SchetsWin : Form
     Panel paneel;
     bool vast;
     bool modified = false;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
     private void veranderAfmeting(object o, EventArgs ea)
     {
         schetscontrol.Size = new Size ( this.ClientSize.Width  - 70
@@ -68,7 +73,10 @@ public class SchetsWin : Form
                                         huidigeTool.MuisLos (schetscontrol, mea.Location);
                                         vast = false;
                                         modified = true;
+<<<<<<< HEAD
                                       
+=======
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
                                     };
         schetscontrol.KeyPress +=  (object o, KeyPressEventArgs kpea) => 
                                     {   huidigeTool.Letter  (schetscontrol, kpea.KeyChar); 
@@ -99,6 +107,10 @@ public class SchetsWin : Form
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
     private void maakFileMenu()
     {   
         ToolStripMenuItem menu = new ToolStripMenuItem("File");
@@ -203,7 +215,22 @@ public class SchetsWin : Form
         foreach (string k in kleuren)
             cbb.Items.Add(k);
         cbb.SelectedIndex = 0;
+<<<<<<< HEAD
         
+=======
+
+        // textbox waar je dikte in kan vullen 
+        TextBox dikteinvullen = new TextBox(); paneel.Controls.Add(dikteinvullen);
+        dikteinvullen.Location = new Point(390, 0);
+        //tdikteinvullen = dikteinvullen.Text;
+        dikteinvullen.TextChanged += schetscontrol.VeranderDikte;
+
+        // label met pen/lijn- dikte: 
+        Label dikte = new Label(); paneel.Controls.Add(dikte);
+        dikte.Text = "pen/lijn- dikte:";
+        dikte.Location = new Point(300, 0);
+        dikte.AutoSize = true;
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
     }
    
 }

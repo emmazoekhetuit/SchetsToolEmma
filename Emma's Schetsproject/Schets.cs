@@ -47,20 +47,23 @@ public class Schets
             if (schetsTools[i].Collides(p))
             {
                 schetsTools.RemoveAt(i);
+                Teken2();
                 break;
             }
         }
     }
-
+    
     public void Teken2()
     {
         Graphics g = Graphics.FromImage(bitmap);
         g.Clear(Color.White);//FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
         g.SmoothingMode = SmoothingMode.AntiAlias;
+
         for (int i = 0; i < schetsTools.Count; i++)
         {
            schetsTools[i].TekenSelf(g);
         }
+
     }
     public void Teken(Graphics gr)
     {
@@ -86,12 +89,19 @@ public class Schets
     public void Save()
     {
         SaveFileDialog sfd = new SaveFileDialog();
+<<<<<<< HEAD
         sfd.Filter = "png image (*.png)|*.png|jpg image (*.jpg)|*.jpg|bmp image (*.bmp)|*.bmp|All files (*.*)|*.*";
+=======
+        sfd.Filter = "png image (.png)|.png|jpg image (.jpg)|.jpg|bmp image (.bmp)|.bmp|All files (.)|.";
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
         ImageFormat format = ImageFormat.Png;
         if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
         {
             bitmap.Save(sfd.FileName, format);
+<<<<<<< HEAD
 
+=======
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
         }
     }
 }

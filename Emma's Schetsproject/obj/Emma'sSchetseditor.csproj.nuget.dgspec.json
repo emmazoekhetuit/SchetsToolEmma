@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
         "packagesPath": "C:\\Users\\emmad\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\obj\\",
+=======
+    "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+        "projectName": "Emma'sSchetseditor",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\obj\\",
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\emmad\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "0r0m7vVYHduYVZhU+qiFcKb/uu2lxNKCbDv2ZIN5v35AJc21N1wv6CuX1KB7hbIsOC5Wt3mQHkQvj86sKGGGDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\emmad\\Source\\Repos\\emmazoekhetuit\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+=======
+  "dgSpecHash": "eUILmTMDYoBJrDgQx4V8mjoSk69e0S/zaoOfIEXFddXZuFKgsl/IE95KyA39Svv0wsdV9UkLrdlMV+apOgWtsg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\source\\repos\\SchetsToolEmma\\Emma's Schetsproject\\Emma'sSchetseditor.csproj",
+>>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
   "expectedPackageFiles": [],
   "logs": []
 }
