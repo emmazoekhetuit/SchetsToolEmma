@@ -17,6 +17,11 @@ je kan maar een instantie van elk object in de lijst hebben
 
 
 
+public void save : 
+daar is dingen veranderd 
+
+
+
 
 
 

@@ -8,10 +8,16 @@ public class SchetsControl : UserControl
 {
     private Schets schets;
     private Color penkleur;
+    private int pendikte = 3;
 
     public Color PenKleur
     {
         get { return penkleur; }
+    }
+
+    public int PenDikte
+    {
+        get { return pendikte; }
     }
     public Schets Schets
     {
@@ -74,7 +80,32 @@ public class SchetsControl : UserControl
     {
         string kleurNaam = ((ComboBox)obj).Text;
         penkleur = Color.FromName(kleurNaam);
+
     }
+
+    public void VeranderDikte(object obj, EventArgs ea)
+    {
+        int a;
+        try
+        {
+            if(((TextBox)obj).Text != "")
+            {
+                a = int.Parse(((TextBox)obj).Text);
+            }
+            else { a = pendikte; }
+        }
+        catch
+        {
+            MessageBox.Show("Dit is niet correct ingevuld. Je kunt alleen een cijfer invullen", "Waarschuwing");
+           ((TextBox)obj).Text = "3";
+            a = 3;
+        }
+
+        pendikte = a;
+
+    }
+
+
     public void VeranderKleurViaMenu(object obj, EventArgs ea)
     {
         string kleurNaam = ((ToolStripMenuItem)obj).Text;
@@ -88,12 +119,17 @@ public class SchetsControl : UserControl
         // SchetsControl
         // 
         Name = "SchetsControl";
+        Load += SchetsControl_Load;
         ResumeLayout(false);
     }
 
-    public void Save(Object o, EventArgs ea)
+    public void Save(object o, EventArgs ea)
     {
-        schets.Sa
-            ve();
+        schets.Save();
+    }
+
+    private void SchetsControl_Load(object sender, EventArgs e)
+    {
+
     }
 }

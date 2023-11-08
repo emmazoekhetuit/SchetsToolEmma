@@ -1,13 +1,15 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 public class Schets
 {
-    private Bitmap bitmap;
+    public Bitmap bitmap;
     private List<ISchetsTool> schetsTools = new List<ISchetsTool>();
         
     public Schets()
@@ -64,6 +66,7 @@ public class Schets
     {
         gr.DrawImage(bitmap, 0, 0);
     }
+
     public void Schoon()
     {
         List<ISchetsTool> st = SchetsTools;
@@ -71,6 +74,7 @@ public class Schets
 
         Graphics gr = Graphics.FromImage(bitmap);
         gr.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
+
     }
 
     //Rotate moet veranderd worden
@@ -81,7 +85,13 @@ public class Schets
 
     public void Save()
     {
-        bitmap.Save("file.png", ImageFormat.Png);
-        
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.Filter = "png image (*.png)|*.png|jpg image (*.jpg)|*.jpg|bmp image (*.bmp)|*.bmp|All files (*.*)|*.*";
+        ImageFormat format = ImageFormat.Png;
+        if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        {
+            bitmap.Save(sfd.FileName, format);
+
+        }
     }
 }

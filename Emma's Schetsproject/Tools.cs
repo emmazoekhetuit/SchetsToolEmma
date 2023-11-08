@@ -20,9 +20,11 @@ public abstract class StartpuntTool : ISchetsTool
 {
     protected Point startpunt;
     protected Brush kwast;
+    protected int dikte; // om de dikte aan te passen 
 
     public virtual void MuisVast(SchetsControl s, Point p)
     {   startpunt = p;
+        dikte = s.PenDikte;
     }
     public virtual void MuisLos(SchetsControl s, Point p)
     {   kwast = new SolidBrush(s.PenKleur);
@@ -138,7 +140,7 @@ public class LijnTool : TweepuntTool
     public override string ToString() { return "lijn"; }
 
     public override void Bezig(Graphics g, Point p1, Point p2)
-    {   g.DrawLine(MaakPen(this.kwast,3), p1, p2);
+    {   g.DrawLine(MaakPen(this.kwast,dikte), p1, p2);
     }
 
     public override void TekenSelf(Graphics g)
