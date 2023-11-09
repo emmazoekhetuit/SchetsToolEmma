@@ -89,19 +89,58 @@ public class Schets
     public void Save()
     {
         SaveFileDialog sfd = new SaveFileDialog();
-<<<<<<< HEAD
+
         sfd.Filter = "png image (*.png)|*.png|jpg image (*.jpg)|*.jpg|bmp image (*.bmp)|*.bmp|All files (*.*)|*.*";
-=======
-        sfd.Filter = "png image (.png)|.png|jpg image (.jpg)|.jpg|bmp image (.bmp)|.bmp|All files (.)|.";
->>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
+
         ImageFormat format = ImageFormat.Png;
         if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
         {
             bitmap.Save(sfd.FileName, format);
-<<<<<<< HEAD
 
-=======
->>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
         }
+    }
+
+    public void Opslaan(string Filenaam)
+    {
+        try
+        {
+            StreamWriter w = new StreamWriter(Filenaam);
+            foreach (ISchetsTool s in SchetsTools)
+            {
+                w.WriteLine(s.toText());
+            }
+            w.Close();
+        }
+        catch{ }
+       
+    }
+
+    public void Open(string Filenaam)
+    {
+        schetsTools.Clear();
+        ISchetsTool s;
+        StreamReader sr = new StreamReader(Filenaam);
+        string regel;
+        while((regel = sr.ReadLine()) != null)
+        {
+            string[] list = regel.Split(' ');
+            string type = list[0];
+           
+            switch(type)  
+            {
+                case "tekst"  : s = new TekstTool();        break;
+                case "pen"    : s = new PenTool();          break;
+                case "lijn"   : s = new LijnTool();         break;
+                case "kader"  : s = new RechthoekTool();    break;
+                case "vlak"   : s = new VolRechthoekTool(); break;
+                case "cirkel" : s = new CirkelTool();       break;
+                case "bol"    : s = new VolCirkelTool();    break;
+                case "Gum"    : s = new GumTool();          break;
+                default       : s = new GumTool2();         break;
+            }
+            schetsTools.Add(s.toSchetsTool(list));
+        }
+        sr.Close();
+        Teken2();
     }
 }

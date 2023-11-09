@@ -14,17 +14,18 @@ public interface ISchetsTool
     //nieuw
     void TekenSelf(Graphics g);
     bool Collides(Point p);
+
+    string toText();
+
+    public ISchetsTool toSchetsTool(string[] list);
 }
 
 public abstract class StartpuntTool : ISchetsTool
 {
     protected Point startpunt;
     protected Brush kwast;
-<<<<<<< HEAD
     protected int dikte; // om de dikte aan te passen 
-=======
-    protected int dikte; //om de dikte van de lijn/pen aan te passen
->>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
+
 
     public virtual void MuisVast(SchetsControl s, Point p)
     {   startpunt = p;
@@ -37,10 +38,17 @@ public abstract class StartpuntTool : ISchetsTool
     public abstract void Letter(SchetsControl s, char c);
     public abstract void TekenSelf(Graphics g);
     public abstract bool Collides(Point p);
+
+    public abstract ISchetsTool toSchetsTool(string[] list);
+    public virtual string toText()
+    {
+        return this.ToString() + " " + this.startpunt.ToString() + " " + kwast.ToString() + dikte.ToString();
+    }
 }
 
 public class TekstTool : StartpuntTool
 {
+    string tekst;
     public override string ToString() { return "tekst"; }
 
     public override void MuisDrag(SchetsControl s, Point p) { }
@@ -76,6 +84,18 @@ public class TekstTool : StartpuntTool
     {
         //ToDo
     }
+
+    public override StartpuntTool toSchetsTool(string[] list)
+    {
+        //TODO
+        return this;
+    }
+    public override string toText()
+    {
+        
+        return base.toText() + tekst;
+    }
+
     public override bool Collides(Point p) { return false; }
 }
 
@@ -123,6 +143,18 @@ public abstract class TweepuntTool : StartpuntTool
     public virtual void Compleet2(List<ISchetsTool> s)
     {
         s.Add((ISchetsTool)MemberwiseClone()); 
+    }
+
+    public override TweepuntTool toSchetsTool(string[] list)
+    {
+        //TODO
+        return this;
+    }
+    public override string toText()
+    {
+        //TODO
+        return base.toText() + " " + this.eindpunt.ToString();
+
     }
 }
 
@@ -299,6 +331,17 @@ public class GumTool2 : ISchetsTool
     public void TekenSelf(Graphics g) { }
     public override string ToString() { return "vormgum"; }
     public bool Collides(Point p) { return false; }
+
+    public  ISchetsTool toSchetsTool(string[] list)
+    {
+        //TODO
+        return this;
+    }
+    public string toText()
+    {
+        //TODO
+        return "";
+    }
 }
 
 public class CirkelTool : TweepuntTool

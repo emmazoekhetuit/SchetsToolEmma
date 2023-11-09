@@ -14,10 +14,7 @@ public class SchetsControl : UserControl
     {
         get { return penkleur; }
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
     public int PenDikte
     {
         get { return pendikte; }
@@ -122,7 +119,7 @@ public class SchetsControl : UserControl
         // SchetsControl
         // 
         Name = "SchetsControl";
-        Load += SchetsControl_Load;
+        Load += SchetsControlLoad;
         ResumeLayout(false);
     }
 
@@ -131,12 +128,20 @@ public class SchetsControl : UserControl
         schets.Save();
     }
 
-<<<<<<< HEAD
-    private void SchetsControl_Load(object sender, EventArgs e)
+    public void Opslaan(object o, EventArgs ea)
     {
+        //TODO manier om filenaam te doen
+        schets.Opslaan("");
+    }
 
-=======
-    public void VeranderDikte(object obj, EventArgs ea)
+    public void Open(object o, EventArgs ea)
+    {
+        //TOOD manier om filenaam te openen
+        schets.Open("");
+    }
+
+
+    public void SchetsControlLoad(object obj, EventArgs ea)
     {
         int a;
         try
@@ -154,6 +159,6 @@ public class SchetsControl : UserControl
             a = 3;
         }
         pendikte = a;
->>>>>>> f312491ddf1807ddffe12da3e40121cbdbbd621c
+
     }
 }
