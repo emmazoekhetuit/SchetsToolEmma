@@ -102,16 +102,12 @@ public class Schets
 
     public void Opslaan(string Filenaam)
     {
-        try
-        {
             StreamWriter w = new StreamWriter(Filenaam);
             foreach (ISchetsTool s in SchetsTools)
             {
                 w.WriteLine(s.toText());
             }
             w.Close();
-        }
-        catch{ }
        
     }
 

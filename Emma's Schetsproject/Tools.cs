@@ -62,8 +62,7 @@ public class TekstTool : StartpuntTool
             string tekst = c.ToString();
             SizeF sz = 
             gr.MeasureString(tekst, font, this.startpunt, StringFormat.GenericTypographic);
-            gr.DrawString   (tekst, font, kwast, 
-                                            this.startpunt, StringFormat.GenericTypographic);
+            gr.DrawString   (tekst, font, kwast, this.startpunt, StringFormat.GenericTypographic);
             //gr.DrawRectangle(Pens.Black, startpunt.X, startpunt.Y, sz.Width, sz.Height);
             startpunt.X += (int)sz.Width;
             s.Invalidate();
